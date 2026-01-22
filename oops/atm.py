@@ -16,6 +16,10 @@
 
 class ATM:
 
+    # static/class variable
+    __bank_name = "Bank of Python"
+    __counter = 0
+
     # Constructor to initialize balance and pin
     # __init__ is a special method in Python classes. 
     # It is called when an object is created from the class and allows the class to initialize the attributes of the class.
@@ -23,7 +27,9 @@ class ATM:
         # Hiding attributes using double underscores
         self.__balance=0
         self.__pin=""
-        self.__menu()
+        self.id = ATM.__counter
+        ATM.__counter = ATM.__counter + 1
+        # self.__menu()
     # getters and setters can also be used for encapsulation
     def get_pin(self):
         return self.__pin
@@ -48,6 +54,9 @@ class ATM:
         elif user_input == "4":
             self.check_balance()
         elif user_input == "5":
+            print(f"Bank Name: {ATM.get_bank_name()}")
+            print(f"ATM ID: {self.id}")
+        elif user_input == "6":
             self.exit()
             return
         else:
@@ -84,6 +93,20 @@ class ATM:
             print(f"Current balance: {self.__balance}")
         else:
             print("Incorrect PIN.")
+    @staticmethod
+    def get_bank_name():
+        return ATM.__bank_name
+    
+    @staticmethod
+    def get_id():
+        return ATM.__counter
+
+    @staticmethod
+    def set_id(new_id):
+        if type(new_id) == int:
+            ATM.__counter = new_id
+        else:
+            print("ID must be an integer.")
     
     def exit(self):
         print("Thank you for using the ATM. Goodbye!")
@@ -92,4 +115,7 @@ class ATM:
 ## main code
 if __name__ == "__main__":
         atm = ATM()
+        print(f"ATM 1 ID: {atm.get_id()}")
+        atm2 = ATM()
+        print(f"ATM 2 ID: {atm2.get_id()}")
         
