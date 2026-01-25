@@ -18,7 +18,14 @@ print(L1)
 L2 = [4,6,7]
 print(id(L2))  
 print(L2)
-change(L2[:])
+# L3 = L2[:]
+change(L2[:])  # passing a clone of L2
 print(L2)
 
 # with cloning
+# 135018669218944
+# [4, 6, 7]
+# 135018669219136
+# 135018669219136
+# [4, 6, 7]
+# L2 goes through different ids before and after the change function call, so the original list remains unchanged.
